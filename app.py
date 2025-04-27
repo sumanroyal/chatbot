@@ -27,9 +27,18 @@ if selected_tab == "Upload PDFs":
     st.header("Upload PDFs")
     st.write("Upload your PDF files here.")
     if st.button('Reset'):
-        st.session_state.uploaded_files.clear()
-        st.session_state.documents.clear()
-        st.session_state.submitted = False
+        try:
+            st.session_state.uploaded_files.clear()
+        except:
+            h=1
+        try:
+            st.session_state.documents.clear()
+        except:
+            h=1
+        try:
+            st.session_state.submitted = False
+        except:
+            j=1
         #st.write(st.session_state)
     # uploaded_files = st.file_uploader("Choose a PDF file", type="pdf", accept_multiple_files=True)
     if "uploaded_files" not in st.session_state:
