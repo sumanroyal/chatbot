@@ -28,15 +28,15 @@ if selected_tab == "Upload PDFs":
     st.write("Upload your PDF files here.")
     if st.button('Reset'):
         try:
-            st.session_state.uploaded_files.clear()
+            del st.session_state['uploaded_files']
         except:
             h=1
         try:
-            st.session_state.documents.clear()
+            del st.session_state['documents']
         except:
             h=1
         try:
-            st.session_state.submitted = False
+            del st.session_state['submitted']
         except:
             j=1
         #st.write(st.session_state)
@@ -80,9 +80,18 @@ elif selected_tab == "Chatbot":
     st.title("Chatbot")
     st.write("Ask questions about the uploaded PDFs.")
     if st.button("Clear Session"):
-        del st.session_state["session_id"]
-        del st.session_state["store"]
-        del st.session_state["messages"]
+        try:
+            del st.session_state["session_id"]
+        except:
+            k=1
+        try:
+            del st.session_state["store"]
+        except:
+            p=1
+        try:
+            del st.session_state["messages"]
+        except:
+            k=1
     api_key = os.getenv("GROQ_API_KEY")
     llm = ChatGroq(groq_api_key=api_key, model_name="Gemma2-9b-It")
     if 'session_id' not in st.session_state:
